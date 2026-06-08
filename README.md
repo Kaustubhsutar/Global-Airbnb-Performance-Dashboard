@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🏠 Global Airbnb Performance Dashboard
+# Global Airbnb Performance Dashboard
 ### Power BI Dashboard | Marketplace Intelligence | Customer Analytics | Review Insights
 
 <p align="center">
