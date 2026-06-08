@@ -46,7 +46,7 @@ A premium multi-page Power BI dashboard project focused on Airbnb marketplace gr
 
 ---
 
-# 📖 Executive Summary
+## 📖 Executive Summary
 
 The **Global Airbnb Performance Dashboard** is an executive-style business intelligence solution designed to analyze Airbnb’s global marketplace performance across listings, ratings, reviews, customer behavior, and host trust dynamics.
 
@@ -70,7 +70,7 @@ The dashboard focuses not only on reporting KPIs, but also on uncovering:
 
 ---
 
-# 🎯 Business Problem
+## 🎯 Business Problem
 
 Global marketplace platforms like Airbnb generate large volumes of listing, host, and review data.
 
@@ -86,7 +86,7 @@ This project addresses these challenges through an interactive end-to-end Power 
 
 ---
 
-# 🚀 Objectives
+## Objectives
 
 The project was designed to answer the following analytical questions:
 
@@ -102,7 +102,7 @@ The project was designed to answer the following analytical questions:
 
 ---
 
-# 🗂 Dataset Overview
+## 🗂 Dataset Overview
 
 The project uses Airbnb listing and review datasets containing:
 - listing information
@@ -124,7 +124,7 @@ The project uses Airbnb listing and review datasets containing:
 
 ---
 
-# 🛠️ Tools & Technologies
+## 🛠️ Tools & Technologies
 
 | Tool | Purpose |
 |---|---|
@@ -136,7 +136,7 @@ The project uses Airbnb listing and review datasets containing:
 
 ---
 
-# 🏗 Architecture / Workflow
+## 🏗 Architecture / Workflow
 
 ```text
 Raw Airbnb Dataset
@@ -159,7 +159,7 @@ Interactive Multi-Page Power BI Dashboard
 
 ---
 
-# 📁 Repository Structure
+## 📁 Repository Structure
 
 ```bash
 Global_Airbnb_Performance_Dashboard/
@@ -184,19 +184,21 @@ Global_Airbnb_Performance_Dashboard/
 
 ---
 
-# 📊 Dashboard Pages
+## 📊 Dashboard Pages
 
-# 🏠 Home Page
+## Home Page
 
 Premium landing page with custom navigation experience and Airbnb-inspired dashboard branding.
 
-<img src="Docs/Images/Home Page.png" width="100%"/>
+<img src="Docs/Dashboard Images/01_Home Page.png" width="100%"/>
 
 ---
 
-# 📈 Overview Dashboard
+## 📈 Overview Dashboard
 
 Analyzes Airbnb marketplace growth, listing trends, and platform evolution.
+
+<img src="Docs/Dashboard Images/02_Overview Page.png" width="100%"/>
 
 ### Key Analysis
 - Marketplace growth lifecycle
@@ -205,13 +207,20 @@ Analyzes Airbnb marketplace growth, listing trends, and platform evolution.
 - Host growth
 - Platform maturity analysis
 
-<img src="Docs/Images/Overview Page.png" width="100%"/>
 
 ---
 
-# ⭐ Ratings Dashboard
+## ⭐ Ratings Dashboard
 
 Explores customer satisfaction, city performance, and pricing intelligence.
+
+### Overall Ratings
+
+<img src="Docs/Dashboad Images/03_Ratings Page - 1.png" width="100%"/>
+
+### Detailed Ratings
+
+<img src="Docs/Dashboad Images/04_Ratings Page - 2.png" width="100%"/>
 
 ### Key Analysis
 - Market concentration analysis
@@ -220,15 +229,14 @@ Explores customer satisfaction, city performance, and pricing intelligence.
 - Customer experience benchmarking
 - Review score heatmaps
 
-<img src="Docs/Images/Ratings Page - 1.png" width="100%"/>
-
-<img src="Docs/Images/Ratings Page - 2.png" width="100%"/>
 
 ---
 
-# 📝 Reviews Dashboard
+## 📝 Reviews Dashboard
 
 Analyzes customer review behavior, trust indicators, and travel seasonality.
+
+<img src="Docs/Dashboad Images/05_Reviews Page.png" width="100%"/>
 
 ### Key Analysis
 - Review frequency analysis
@@ -237,7 +245,7 @@ Analyzes customer review behavior, trust indicators, and travel seasonality.
 - Seasonal travel patterns
 - Verification analysis
 
-<img src="Docs/Images/Reviews Page.png" width="100%"/>
+
 
 ---
 
