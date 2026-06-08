@@ -104,6 +104,11 @@ The project was designed to answer the following analytical questions:
 
 ## 🗂 Dataset Overview
 
+The dataset used in this project was sourced from Maven Analytics Data Playground.
+
+🔗 Dataset Link:  
+https://mavenanalytics.io/data-playground/airbnb-listings-reviews
+
 The project uses Airbnb listing and review datasets containing:
 - listing information
 - pricing
@@ -164,12 +169,7 @@ Interactive Multi-Page Power BI Dashboard
 ```bash
 Global_Airbnb_Performance_Dashboard/
 │
-├── Dashboard/
-│   └── GlobalAirbnbPerformance.pbix
-│
 ├── Docs/
-│   ├── Semantic_Model_Documentation.md
-│   │
 │   └── Images/
 │       ├── Home Page.png
 │       ├── Overview Page.png
@@ -194,11 +194,9 @@ Premium landing page with custom navigation experience and Airbnb-inspired dashb
 
 ---
 
-## 📈 Overview Dashboard
+## Overview Dashboard
 
 Analyzes Airbnb marketplace growth, listing trends, and platform evolution.
-
-<img src="Docs/Dashboard Images/02_Overview Page.png" width="100%"/>
 
 ### Key Analysis
 - Marketplace growth lifecycle
@@ -207,20 +205,13 @@ Analyzes Airbnb marketplace growth, listing trends, and platform evolution.
 - Host growth
 - Platform maturity analysis
 
+<img src="Docs/Dashboard Images/02_Overview Page.png" width="100%"/>
 
 ---
 
-## ⭐ Ratings Dashboard
+## Ratings Dashboard
 
 Explores customer satisfaction, city performance, and pricing intelligence.
-
-### Overall Ratings
-
-<img src="Docs/Dashboad Images/03_Ratings Page - 1.png" width="100%"/>
-
-### Detailed Ratings
-
-<img src="Docs/Dashboad Images/04_Ratings Page - 2.png" width="100%"/>
 
 ### Key Analysis
 - Market concentration analysis
@@ -229,14 +220,19 @@ Explores customer satisfaction, city performance, and pricing intelligence.
 - Customer experience benchmarking
 - Review score heatmaps
 
+### Overall Ratings
+
+<img src="Docs/Dashboard Images/03_Ratings Page - 1.png" width="100%"/>
+
+### Detailed Ratings
+
+<img src="Docs/Dashboard Images/04_Ratings Page - 2.png" width="100%"/>
 
 ---
 
-## 📝 Reviews Dashboard
+## Reviews Dashboard
 
 Analyzes customer review behavior, trust indicators, and travel seasonality.
-
-<img src="Docs/Dashboad Images/05_Reviews Page.png" width="100%"/>
 
 ### Key Analysis
 - Review frequency analysis
@@ -244,12 +240,12 @@ Analyzes customer review behavior, trust indicators, and travel seasonality.
 - Host trust matrix
 - Seasonal travel patterns
 - Verification analysis
-
-
+  
+<img src="Docs/Dashboard Images/05_Reviews Page.png" width="100%"/>
 
 ---
 
-# 📊 Dashboard Analysis Performed
+## 📊 Dashboard Analysis Performed
 
 The project includes advanced analytical workflows across multiple dimensions.
 
@@ -267,129 +263,109 @@ The project includes advanced analytical workflows across multiple dimensions.
 ✅ Executive dashboard storytelling  
 ✅ Multi-page interactive navigation  
 
----
-
-# 🧮 Semantic Model Overview
-
-The semantic model follows a simplified star-schema structure centered around Airbnb listings and customer review activity.
-
-## Core Tables
-
-| Table | Type | Description |
-|---|---|---|
-| Listings | Fact/Dimension | Core Airbnb listing data |
-| Reviews | Fact | Review activity & reviewer behavior |
-| _Measures | Measure Table | Centralized DAX calculations |
-| Airbnb Data | Hidden | Staging/source table |
-
-## Model Highlights
-
-- Centralized measure table
-- Cumulative contribution analysis
-- Pareto-style review analytics
-- Dynamic KPI calculations
-- Host trust matrix
-- Review frequency behavioral analysis
-- Time-based analytical columns
-- Optimized semantic relationships
 
 ---
 
-# 🧮 Advanced DAX Measures
+## 🧮 Advanced DAX Measures
 
-## 1️⃣ Cumulative Marketplace Contribution
+### 1️⃣ Cumulative Reviewer Analysis
 
 ```DAX
-Cumulative Listings =
-VAR CurrentRank =
-    MAXX(
-        VALUES( Listings[city]),
-        [City Rank]
-    )
+Cumulative Reviewers =
+VAR CurentReviews =
+    MAXX( Reviews, Reviews[Reviews per Reviewer] )
 RETURN
 CALCULATE(
-    [Total Listings],
+    DISTINCTCOUNT( Reviews[reviewer_id] ),
     FILTER(
-        ALL(Listings[city]),
-        [City Rank] <= CurrentRank
+        ALL( Reviews[Reviews per Reviewer] ),
+        Reviews[Reviews per Reviewer] <= CurentReviews
     )
 )
 ```
 
 ### 📌 Business Insight
 
-> Enables Pareto-style market concentration analysis by calculating cumulative listing contribution across cities.
+> Calculates the running cumulative count of unique reviewers ordered by review frequency, enabling behavioral Pareto analysis.
 
----
 
-## 2️⃣ Review Frequency Analysis
+### 2️⃣ Cumulative Reviewer Distribution %
 
 ```DAX
-Reviews per Reviewer =
-CALCULATE(
-    COUNT( Reviews[review_id] ),
-    ALLEXCEPT( Reviews, Reviews[reviewer_id] )
+Cumulative % Rerview Frequency =
+DIVIDE( 
+    [Cumulative Reviewers], 
+    CALCULATE( 
+        [Total Reviewers], 
+        ALL( Reviews[Reviews per Reviewer] ) 
+    ) 
 )
 ```
 
 ### 📌 Business Insight
 
-> Measures customer engagement frequency and supports behavioral review distribution analysis.
+> Measures the cumulative percentage contribution of reviewers based on review frequency to identify customer engagement concentration.
 
----
 
-## 3️⃣ Host Trust Matrix
+### 3️⃣ Monthly Review Share Analysis
 
 ```DAX
-Verified_Profile_% =
-DIVIDE( [Verified_Pofile], [Total Hosts] )
+Total Reviews =
+DISTINCTCOUNT( Reviews[review_id] )
+```
+
+```DAX
+% of Monthy Reviews =
+DIVIDE(
+    [Total Reviews],
+    CALCULATE(
+        [Total Reviews],
+        ALLSELECTED( Listings[city] )
+    )
+)
 ```
 
 ### 📌 Business Insight
 
-> Evaluates the percentage of fully verified hosts with profile completeness across the marketplace.
+> Calculates each city's share of total monthly reviews relative to selected cities, supporting seasonal and comparative review analysis.
 
 ---
 
-# 📈 Key Business Insights
+## Key Business Insights
 
-## 📊 Marketplace Growth
+## Marketplace Growth
 
 - Airbnb experienced rapid listing expansion between 2011–2015.
 - Growth slowed during regulatory tightening in 2016–2017.
 - Platform activity rebounded before declining sharply during the COVID-19 period.
 
----
 
-## 🌍 Market Concentration
+## Market Concentration
 
 - Paris, New York, and Sydney contribute a disproportionate share of listings and reviews.
 - Paris remains the platform’s largest and most engaged marketplace.
 
----
 
-## ⭐ Customer Ratings
+## Customer Ratings
 
 - Mexico City and Rio de Janeiro recorded the highest overall guest satisfaction.
 - Cleanliness and value-for-money consistently scored lower than communication and location.
 
----
 
-## 📝 Customer Review Behavior
+## Customer Review Behavior
 
 - Most customers leave only a small number of reviews.
 - Nearly all review activity is concentrated among low-frequency reviewers.
 
----
 
-## 🔐 Trust & Verification
+## Trust & Verification
 
 - Fully verified hosts dominate the platform ecosystem.
 - Anonymous and unverified host profiles represent only a minimal share of the marketplace.
 
 ---
 
-# 🧹 Data Cleaning & Transformation
+## Data Cleaning & Transformation
 
 The project involved extensive preprocessing and transformation:
 
@@ -406,7 +382,7 @@ The project involved extensive preprocessing and transformation:
 
 ---
 
-# 📚 Key Learnings
+## 📚 Key Learnings
 
 ## Technical Learnings
 
@@ -429,7 +405,7 @@ The project involved extensive preprocessing and transformation:
 
 ---
 
-# 🚀 Future Improvements
+## Future Improvements
 
 Planned enhancements for the project:
 
@@ -443,11 +419,11 @@ Planned enhancements for the project:
 
 ---
 
-# 🌟 About Me
+## 🌟 About Me
 
-Hi there! I'm Kaustubh Sutar, a data enthusiast and aspiring Data Analyst skilled in Power BI, SQL, Python, Excel, PySpark, and Databricks. I enjoy building interactive dashboards and transforming raw data into meaningful business insights through analytics and storytelling.
+HHi there! I'm Kaustubh Sutar, a data enthusiast and aspiring Data Analyst & Data Engineer skilled in Power BI, SQL, Python, Excel, PySpark, and Databricks. I enjoy building scalable data pipelines, analyzing datasets, and creating dashboards that transform raw data into actionable business insights.
 
-I also have growing interests in Data Engineering, Product Analytics, and AI, continuously exploring modern technologies to expand my analytical and engineering capabilities.
+I also have growing interests in Data Engineering, Machine Learning, and AI, continuously exploring modern technologies to expand my analytical and engineering capabilities. 
 
 Let's stay connected!
 
@@ -455,7 +431,7 @@ Let's stay connected!
 
 ---
 
-# ⭐ Support This Project
+## ⭐ Support This Project
 
 If you found this project insightful:
 
@@ -466,6 +442,6 @@ If you found this project insightful:
 
 ---
 
-# 🛡️ License
+## 🛡️ License
 
 This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and share this project with proper attribution.
