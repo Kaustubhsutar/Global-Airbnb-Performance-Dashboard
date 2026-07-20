@@ -421,7 +421,7 @@ Planned enhancements for the project:
 
 ## 🌟 About Me
 
-HHi there! I'm Kaustubh Sutar, a data enthusiast and aspiring Data Analyst & Data Engineer skilled in Power BI, SQL, Python, Excel, PySpark, and Databricks. I enjoy building scalable data pipelines, analyzing datasets, and creating dashboards that transform raw data into actionable business insights.
+Hi there! I'm Kaustubh Sutar, a data enthusiast and aspiring Data Analyst & Data Engineer skilled in Power BI, SQL, Python, Excel, PySpark, and Databricks. I enjoy building scalable data pipelines, analyzing datasets, and creating dashboards that transform raw data into actionable business insights.
 
 I also have growing interests in Data Engineering, Machine Learning, and AI, continuously exploring modern technologies to expand my analytical and engineering capabilities. 
 
